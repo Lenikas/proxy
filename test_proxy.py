@@ -1,5 +1,5 @@
 import unittest
-from parser_data import ParserData
+from work_with_data import DataParser
 
 
 class TestProxy(unittest.TestCase):
@@ -7,22 +7,22 @@ class TestProxy(unittest.TestCase):
         data = file.read()
 
     def test_parse_method(self):
-        method = ParserData.parse_method(TestProxy.data)
+        method = DataParser.parse_method(TestProxy.data)
         expected = b'GET'
         self.assertEqual(expected, method)
 
     def test_parse_host(self):
-        host = ParserData.parse_host_get(TestProxy.data)
+        host = DataParser.parse_host_get(TestProxy.data)
         expected = b'fanserials.haus'
         self.assertEqual(expected, host)
 
     def test_parse_port_get(self):
-        port = ParserData.parse_server_port_get(TestProxy.data)
+        port = DataParser.parse_server_port_get(TestProxy.data)
         expected = 80
         self.assertEqual(expected, port)
 
     def test_create_config_get(self):
-        config = ParserData.create_config(TestProxy.data)
+        config = DataParser.create_config(TestProxy.data)
         expected = {
             "port": 80,
             "host": b'fanserials.haus',
